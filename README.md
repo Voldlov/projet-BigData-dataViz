@@ -15,15 +15,12 @@ Additionally a zookeeper container is present as a kafka container, ignore that.
 To test if kafka container and service is running, use these two commands in two differents terminals:
 
 Producer
-`docker exec --interactive --tty broker \                                                
-kafka-console-producer --bootstrap-server broker:9092 \
---topic quickstart`
 
-Consumer `docker exec --interactive --tty broker \
-kafka-console-consumer --bootstrap-server broker:9092 \
---topic quickstart \
---from-beginning
-`
+`docker exec --interactive --tty broker kafka-console-producer --bootstrap-server broker:9092 --topic quickstart`
+
+Consumer 
+
+`docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic quickstart --from-beginning`
 
 This will create a producer and a consumer on the topic 'quickstart'. Whatever one or more producer on this topic is sending will be received by the consumer.
 
