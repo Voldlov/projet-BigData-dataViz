@@ -34,7 +34,6 @@ services:
     ports:
       - 8888:8888
       - 4040:4040
-    command: bash -c "pip install -r requirements.txt"
     volumes:
       - .:/opt/workspace
   spark-master:
