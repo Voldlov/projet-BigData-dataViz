@@ -5,10 +5,6 @@ import time
 
 from tools import get_keys_and_join_from_currencies_file
 
-f = open('currencies.json', 'r')
-currencies = json.loads(f.read())['currencies']
-f.close()
-
 currencies_id_query_string = get_keys_and_join_from_currencies_file('id', ',')
 url = 'https://api.coingecko.com/api/v3/simple/price?ids={}&vs_currencies=usd'.format(currencies_id_query_string)
 
