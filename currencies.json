@@ -1,0 +1,29 @@
+{
+  "currencies": [
+    {
+      "id": "ripple",
+      "name": "XRP",
+      "symbol": "xrp"
+    },
+    {
+      "id": "polkadot",
+      "name": "Polkadot",
+      "symbol": "dot"
+    },
+    {
+      "id": "chiliz",
+      "name": "Chiliz",
+      "symbol": "chz"
+    },
+    {
+      "id": "crypto-com-chai",
+      "name": "Cronos",
+      "symbol": "cro"
+    },
+    {
+      "id": "solana",
+      "name": "Solana",
+      "symbol": "sol"
+    }
+  ]
+}
