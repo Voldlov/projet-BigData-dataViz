@@ -70,15 +70,13 @@ services:
       - spark-master
 
 # Ajout de grafana, à tester
-  grafana:
-    image: grafana/grafana:7.5.7
-    ports:
-      - 3000:3000
-    restart: unless-stopped
+grafana:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
     volumes:
-      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
-      - grafana-data:/var/lib/grafana
-
-# Vraiment utile ? 
-volumes:
-  grafana-data:
+     - ./data:/var/lib/grafana
+     - /var/lib/grafana/plugins
+    ports:
+     - 3000:3000
