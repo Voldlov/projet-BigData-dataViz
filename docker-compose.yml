@@ -70,7 +70,7 @@ services:
       - spark-master
 
 # Ajout de grafana, à tester
-grafana:
+  grafana:
     build:
       context: .
       dockerfile: Dockerfile
