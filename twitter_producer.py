@@ -3,7 +3,7 @@ from kafka import KafkaProducer
 import tweepy
 import os
 import json
-import datetime
+from datetime import datetime, timedelta
 
 from tools import get_keys_and_join_from_currencies_file
 
@@ -18,12 +18,12 @@ producer = KafkaProducer(bootstrap_servers='broker:29092')
 class TweetListener(tweepy.StreamingClient):
 
     def on_tweet(self, tweet):
-        date = datetime.datetime.now()
+        date = datetime.now() + timedelta(hours=1)
         data = {
             'text': tweet.text,
-            'date': date
+            'date': date.strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         }
-        producer.send('tweets', json.dumps(data, indent=4, sort_keys=True, default=str).encode('utf-8'))
+        producer.send('tweeting', json.dumps(data, indent=4, sort_keys=True, default=str).encode('utf-8'))
 
 
 stream_tweet = TweetListener(BEARER_TOKEN)
