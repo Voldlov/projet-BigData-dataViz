@@ -2,6 +2,7 @@ from kafka import KafkaProducer
 import json
 import requests
 import time
+from datetime import datetime, timedelta
 
 from tools import get_keys_and_join_from_currencies_file
 
@@ -12,6 +13,12 @@ producer = KafkaProducer(bootstrap_servers="broker:29092")
 
 while True:
     response = requests.get(url)
-    producer.send('cryptos', json.dumps(response.text).encode('utf-8'))
-    producer.flush()
+
+    for crypto in response.json():
+        data = {
+            "name": crypto,
+            "value": response.json()[crypto]['usd'],
+            "date": (datetime.now() + timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%S.%f%z')
+        }
+        producer.send('cryptos', json.dumps(data).encode('utf-8'))
     time.sleep(30)
