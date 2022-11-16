@@ -14,6 +14,12 @@ def get_list_of_keys(key):
     return [item[key] for item in currencies]
 
 
+def get_symbol_from_name(name):
+    for item in get_currencies():
+        if item['id'] == name:
+            return item['symbol']
+
+
 def get_keys_and_join_from_currencies_file(key, join_separator, add_hashtag=False):
     currencies = get_currencies()
 

@@ -23,7 +23,7 @@ class TweetListener(tweepy.StreamingClient):
             'text': tweet.text,
             'date': date.strftime('%Y-%m-%dT%H:%M:%S.%f%z')
         }
-        producer.send('tweets', json.dumps(data, indent=4, sort_keys=True, default=str).encode('utf-8'))
+        producer.send('tweeting', json.dumps(data, indent=4, sort_keys=True, default=str).encode('utf-8'))
 
 
 stream_tweet = TweetListener(BEARER_TOKEN)
