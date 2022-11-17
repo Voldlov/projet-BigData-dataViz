@@ -1,0 +1,679 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "jamesosgood-grafana-mongodb-datasource",
+        "uid": "Czwd0MdVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Tweets"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*[a-z]{4}"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              },
+              {
+                "id": "displayName",
+                "value": "USD"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "A",
+          "target": "db.results.aggregate([\n{\"$match\": { \"crypto_name\" : \"xrp\" }},\n{\"$project\": { \"name\" : \"$crypto_name\", \"value\": \"$nbr_tweets\", \"ts\" : \"$datetime\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        },
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "B",
+          "target": "db.cryptos.aggregate([\n{\"$match\": { \"name\" :\"ripple\" }},\n{\"$project\": { \"name\" : \"$name\", \"value\": \"$value\", \"ts\" : \"$date\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        }
+      ],
+      "title": "XRP",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "jamesosgood-grafana-mongodb-datasource",
+        "uid": "Czwd0MdVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Tweets"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*[a-z]{4}"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              },
+              {
+                "id": "displayName",
+                "value": "USD"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "A",
+          "target": "db.results.aggregate([\n{\"$match\": { \"crypto_name\" : \"dot\" }},\n{\"$project\": { \"name\" : \"$crypto_name\", \"value\": \"$nbr_tweets\", \"ts\" : \"$datetime\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        },
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "B",
+          "target": "db.cryptos.aggregate([\n{\"$match\": { \"name\" :\"polkadot\" }},\n{\"$project\": { \"name\" : \"$name\", \"value\": \"$value\", \"ts\" : \"$date\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        }
+      ],
+      "title": "DOT",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "jamesosgood-grafana-mongodb-datasource",
+        "uid": "Czwd0MdVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Tweets"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*[a-z]{4}"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              },
+              {
+                "id": "displayName",
+                "value": "USD"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "A",
+          "target": "db.results.aggregate([\n{\"$match\": { \"crypto_name\" : \"cro\" }},\n{\"$project\": { \"name\" : \"$crypto_name\", \"value\": \"$nbr_tweets\", \"ts\" : \"$datetime\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        },
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "B",
+          "target": "db.cryptos.aggregate([\n{\"$match\": { \"name\" :\"crypto-com-chain\" }},\n{\"$project\": { \"name\" : \"$name\", \"value\": \"$value\", \"ts\" : \"$date\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        }
+      ],
+      "title": "CRO",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "jamesosgood-grafana-mongodb-datasource",
+        "uid": "Czwd0MdVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Tweets"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*[a-z]{4}"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              },
+              {
+                "id": "displayName",
+                "value": "USD"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "A",
+          "target": "db.results.aggregate([\n{\"$match\": { \"crypto_name\" : \"chz\" }},\n{\"$project\": { \"name\" : \"$crypto_name\", \"value\": \"$nbr_tweets\", \"ts\" : \"$datetime\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        },
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "B",
+          "target": "db.cryptos.aggregate([\n{\"$match\": { \"name\" :\"chiliz\" }},\n{\"$project\": { \"name\" : \"$name\", \"value\": \"$value\", \"ts\" : \"$date\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        }
+      ],
+      "title": "Chiliz",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "jamesosgood-grafana-mongodb-datasource",
+        "uid": "Czwd0MdVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Tweets"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*[a-z]{4}"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              },
+              {
+                "id": "displayName",
+                "value": "USD"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "A",
+          "target": "db.results.aggregate([\n{\"$match\": { \"crypto_name\" : \"sol\" }},\n{\"$project\": { \"name\" : \"$crypto_name\", \"value\": \"$nbr_tweets\", \"ts\" : \"$datetime\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        },
+        {
+          "datasource": {
+            "type": "jamesosgood-grafana-mongodb-datasource",
+            "uid": "1GkeqZOVz"
+          },
+          "hide": false,
+          "rawQuery": true,
+          "refId": "B",
+          "target": "db.cryptos.aggregate([\n{\"$match\": { \"name\" :\"solana\" }},\n{\"$project\": { \"name\" : \"$name\", \"value\": \"$value\", \"ts\" : \"$date\", \"_id\" : 0}}\n])",
+          "type": "timeserie"
+        }
+      ],
+      "title": "SOL",
+      "transformations": [],
+      "type": "timeseries"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2022-11-16T18:05:30.356Z",
+    "to": "2022-11-16T20:39:15.373Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Data viz Tweet&Crypto",
+  "uid": "r8FNRGOVk",
+  "version": 1,
+  "weekStart": ""
+}
